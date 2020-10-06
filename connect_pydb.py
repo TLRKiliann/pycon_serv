@@ -33,6 +33,28 @@ class ConnectorDB:
         RightFrame1.pack(side=RIGHT)
         RightFramelo = Frame(RightFrame1, bd=5, width=90, height=300, padx=2, pady=2, relief=RIDGE)
         RightFramelo.pack(side=TOP)
+        #------------------
+        self.lbltitle = Label(TitleFrame, font=('arial', 40, 'bold'), text='MySQL Connection', bd=7)
+        self.lbltitle.grid(row=0, column=0, padx=132)
+
+        self.lblStudentID = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Student ID", bd=7)
+        self.lblStudentID.grid(row=1, column=0, sticky=W, padx=5)
+        self.entStudentID = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left')
+        self.entStudentID.grid(row=1, column=1, sticky=W, padx=5)
+
+        self.lblFirstname = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Firstname", bd=7)
+        self.lblFirstname.grid(row=2, column=0, sticky=W, padx=5)
+        self.entFirstname = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left')
+        self.entFirstname.grid(row=2, column=1, sticky=W, padx=5)
+
+
+
+
+
+
+        #------------------
+
+
 
         scroll_y=Scrollbar(LeftFrame, orient=VERTICAL)
 
