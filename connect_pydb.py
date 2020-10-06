@@ -101,7 +101,7 @@ class ConnectorDB:
             textvariable=Mobile)
         self.entMobile.grid(row=6, column=1, sticky=W, padx=5)
 
-        #------------------
+        #------------------ ok
 
         scroll_y=Scrollbar(LeftFrame, orient=VERTICAL)
 
