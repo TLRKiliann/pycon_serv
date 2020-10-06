@@ -5,7 +5,7 @@
 """
     App for many doing severals interactions
     with a MySQL database in python code.
-    My first one. 
+    My first one 
 """
 
 
