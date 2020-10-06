@@ -47,9 +47,27 @@ class ConnectorDB:
         self.entFirstname = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left')
         self.entFirstname.grid(row=2, column=1, sticky=W, padx=5)
 
+        self.lblSurname = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Surname", bd=7)
+        self.lblSurname.grid(row=3, column=0, sticky=W, padx=5)
+        self.entSurname = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left')
+        self.entSurname.grid(row=3, column=1, sticky=W, padx=5)
 
+        self.lblAddress = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Address", bd=7)
+        self.lblAddress.grid(row=4, column=0, sticky=W, padx=5)
+        self.entAddress = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left')
+        self.entAddress.grid(row=4, column=1, sticky=W, padx=5)
 
+        self.lblGender = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Gender", bd=7)
+        self.lblGender.grid(row=5, column=0, sticky=W, padx=5)
+        self.cboGender = ttk.Combobox(LeftFrame1, font=('arial', 12, 'bold'), width=42, state="readonly")
+        self.cboGender['values'] = ('', 'Female', 'Male')
+        self.cboGender.current(0)
+        self.cboGender.grid(row=5, column=1, sticky=W, padx=5)
 
+        self.lblMobile = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Mobile", bd=7)
+        self.lblMobile.grid(row=6, column=0, sticky=W, padx=5)
+        self.entMobile = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left')
+        self.entMobile.grid(row=6, column=1, sticky=W, padx=5)
 
 
         #------------------
