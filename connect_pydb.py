@@ -16,9 +16,23 @@ class ConnectorDB:
         self.root.geometry("770x700+300+0")
         self.root.resizable(width=False, height=False)
 
-        MainFrame = Frame(self.root, bd=10, width=770, height=False)
+        MainFrame = Frame(self.root, bd=10, width=770, height=False, relief=RIDGE, bg='RoyalBlue3')
+        MainFrame.grid()
 
+        TitleFrame = Frame(MainFrame, bd=7, width=770, height=100, relief=RIDGE)
+        TitleFrame.grid(row=0, column=0)
+        TopFrame3 = Frame(MainFrame, bd=5, width=770, height=500, relief=RIDGE)
+        TopFrame3.grid(row=1, column=0)
 
+        LeftFrame = Frame(TopFrame3, bd=5, width=600, height=400, padx=2, relief=RIDGE, bg='RoyalBlue3')
+        LeftFrame.pack(side=LEFT)
+        LeftFrame1 = Frame(LeftFrame, bd=5, width=600, height=180, padx=2, relief=RIDGE)
+        LeftFrame1.pack(side=TOP, padx=0, pady=0)
+
+        RightFrame1 = Frame(TopFrame3, bd=5, width=100, height=400, padx=2, relief=RIDGE, bg="RoyalBlue3")
+        RightFrame1.pack(side=RIGHT)
+        RightFramelo = Frame(RightFrame1, bd=5, width=90, height=300, padx=2, pady=2, relief=RIDGE)
+        RightFramelo.pack(side=TOP)
 
         scroll_y=Scrollbar(LeftFrame, orient=VERTICAL)
 
