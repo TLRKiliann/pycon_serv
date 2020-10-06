@@ -2,6 +2,13 @@
 #! -*- encoding:Utf-8 -*-
 
 
+"""
+    App for many doing severals interactions
+    with a MySQL database in python code.
+    My first one. 
+"""
+
+
 from tkinter import *
 from tkinter import ttk
 import tkinter.messagebox
