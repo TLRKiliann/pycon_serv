@@ -53,7 +53,7 @@ class ConnectorDB:
         #------------------
 
         def iExit():
-            iExit = tkinter.messagebox.askyesno('MySQL connection', 'Confirm if you want to exit ?')
+            iExit = tkinter.messagebox.askyesno('MySQL Connection', 'Confirm if you want to exit ?')
             if iExit > 0:
                 root.destroy()
                 return
@@ -65,6 +65,100 @@ class ConnectorDB:
             self.entAddress.delete(0, END)
             Gender.set("")
             self.entMobile.delete(0, END)
+        
+        # Interact with database
+        def addData():
+            if StudentID.get() == "" or Firstname.get() == "" or Surname.get() == "":
+                tkinter.messagebox.showerror("MySQL Connection", "Enter Correct Details.")
+            else:
+                sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+                cur = sqlCon.cursor()
+                cur.execute("Insert into pydatabase values (%s,%s,%s,%s,%s,%s)",(
+
+                StudentID.get(),
+                Firstname.get(),
+                Surname.get(),
+                Address.get(),
+                Gender.get(),
+                Mobile.get(),
+                ))
+                sqlCon.commit()
+                sqlCon.close()
+                tkinter.messagebox.showinfo("MySQL connection", "Record Entered Successfully !")
+
+        # Interact with database
+        def DisplayData():
+            if StudentID.get() == "" or Firstname.get() == "" or Surname.get() == "":
+                tkinter.messagebox.showerror("MySQL Connection", "Enter Correct Details.")
+            else:
+                sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+                cur = sqlCon.cursor()
+                cur.execute("Select from pydatabase values")
+                result = cur.fetchall()
+                if len(result) != 0:
+                    self.student_records.delete(*self.student_records.get_children())
+                    for row in result:
+                        self.student_records.Insert('', END, values = row)
+                sqlCon.commit()
+                sqlCon.close()
+
+        def PyDataBaseInfo(event):
+            viewInfo = self.student_records.focus()
+            learnerData = self.student_records.item(viewInfo)
+            row = learnerData['values']
+            StudentID.set(row[0])
+            Firstname.set(row[1])
+            Surname.set(row[2])
+            Address.set(row[3])
+            Gender.set(row[4])
+            Mobile.set(row[5])
+
+        def update():
+            sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+            cur = sqlCon.cursor()
+            cur.execute("Update pydatabase values set firstname=%s, surname=%s, address=%s, Gender=%s, Mobile=%s where stdid=%s",(
+            Firstname.get(),
+            Surname.get(),
+            Address.get(),
+            Gender.get(),
+            Mobile.get(),
+            StudentID.get(),
+            ))
+            sqlCon.commit()
+            DisplayData()
+            sqlCon.close()
+            tkinter.messagebox.showinfo("Data Entry Form", "Record Updated Successfully !")
+
+        def deleteDB():
+            sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+            cur = sqlCon.cursor()
+            cur.execute("Delete from pydatabase values where stdid=%s", StudentID.get())
+            sqlCon.commit()
+            DisplayData()
+            sqlCon.close()
+            tkinter.messagebox.showinfo("Data Entry Form", "Record Successfully Deleted !")
+            Reset()
+
+        def searchDB():
+            try:
+                sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+                cur = sqlCon.cursor()
+                cur.execute("Delete from pydatabase values where stdid=%s", StudentID.get())
+                row = cur.fetchone()
+
+                StudentID.set(row[0])
+                Firstname.set(row[1])
+                Surname.set(row[2])
+                Address.set(row[3])
+                Gender.set(row[4])
+                Mobile.set(row[5])
+
+                sqlCon.commit()
+            except:
+                tkinter.messagebox.showinfo("Data Entry Form", "No Such Record Found !")
+                Reset()
+
+            sqlCon.close()
 
         #------------------
 
@@ -72,47 +166,48 @@ class ConnectorDB:
         self.lbltitle.grid(row=0, column=0, padx=132)
 
         self.lblStudentID = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Student ID", bd=7)
-        self.lblStudentID.grid(row=1, column=0, sticky=W, padx=5)
+        self.lblStudentID.grid(row=0, column=0, sticky=W, padx=5)
         self.entStudentID = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left',
             textvariable=StudentID)
-        self.entStudentID.grid(row=1, column=1, sticky=W, padx=5)
+        self.entStudentID.grid(row=0, column=1, sticky=W, padx=5)
 
         self.lblFirstname = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Firstname", bd=7)
-        self.lblFirstname.grid(row=2, column=0, sticky=W, padx=5)
+        self.lblFirstname.grid(row=1, column=0, sticky=W, padx=5)
         self.entFirstname = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left',
             textvariable=Firstname)
-        self.entFirstname.grid(row=2, column=1, sticky=W, padx=5)
+        self.entFirstname.grid(row=1, column=1, sticky=W, padx=5)
 
         self.lblSurname = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Surname", bd=7)
-        self.lblSurname.grid(row=3, column=0, sticky=W, padx=5)
+        self.lblSurname.grid(row=2, column=0, sticky=W, padx=5)
         self.entSurname = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left',
             textvariable=Surname)
-        self.entSurname.grid(row=3, column=1, sticky=W, padx=5)
+        self.entSurname.grid(row=2, column=1, sticky=W, padx=5)
 
         self.lblAddress = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Address", bd=7)
-        self.lblAddress.grid(row=4, column=0, sticky=W, padx=5)
+        self.lblAddress.grid(row=3, column=0, sticky=W, padx=5)
         self.entAddress = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left',
             textvariable=Address)
-        self.entAddress.grid(row=4, column=1, sticky=W, padx=5)
+        self.entAddress.grid(row=3, column=1, sticky=W, padx=5)
 
         self.lblGender = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Gender", bd=7)
-        self.lblGender.grid(row=5, column=0, sticky=W, padx=5)
-        self.cboGender = ttk.Combobox(LeftFrame1, font=('arial', 12, 'bold'), width=43, state="readonly")
+        self.lblGender.grid(row=4, column=0, sticky=W, padx=5)
+        self.cboGender = ttk.Combobox(LeftFrame1, font=('arial', 12, 'bold'), width=43, state="readonly",
+            textvariable=Gender)
         self.cboGender['values'] = ('', 'Female', 'Male')
         self.cboGender.current(0)
-        self.cboGender.grid(row=5, column=1, sticky=W, padx=5)
+        self.cboGender.grid(row=4, column=1, sticky=W, padx=5)
 
         self.lblMobile = Label(LeftFrame1, font=('arial', 12, 'bold'), text="Mobile", bd=7)
-        self.lblMobile.grid(row=6, column=0, sticky=W, padx=5)
+        self.lblMobile.grid(row=5, column=0, sticky=W, padx=5)
         self.entMobile = Entry(LeftFrame1, font=('arial', 12, 'bold'), bd=5, width=44, justify='left',
             textvariable=Mobile)
-        self.entMobile.grid(row=6, column=1, sticky=W, padx=5)
+        self.entMobile.grid(row=5, column=1, sticky=W, padx=5)
 
         #------------------
 
         scroll_y=Scrollbar(LeftFrame, orient=VERTICAL)
 
-        self.student_records=ttk.Treeview(LeftFrame, height=14, columns=("stdid",
+        self.student_records=ttk.Treeview(LeftFrame, height=12, columns=("stdid",
             "firstname", "surname", "address", "gender", "mobile"),yscrollcommand=scroll_y.set)
         scroll_y.pack(side=RIGHT, fill=Y)
 
@@ -133,23 +228,25 @@ class ConnectorDB:
         self.student_records.column("mobile", width=70)
 
         self.student_records.pack(fill=BOTH, expand=1)
+        self.student_records.bind("<ButtonRelease-1>", PyDataBaseInfo)
+        # DisplayData()
 
         #------------------
 
         self.btnAddNew = Button(RightFramelo, font=('arial', 16, 'bold'), text="Add New", bd=4, 
-            padx=24, pady=1, width=8, height=2).grid(row=0, column=0, padx=1)
+            padx=24, pady=1, width=8, height=2, command=addData).grid(row=0, column=0, padx=1)
 
         self.btnDisplay = Button(RightFramelo, font=('arial', 16, 'bold'), text="Display", bd=4, 
-            padx=24, pady=1, width=8, height=2).grid(row=1, column=0, padx=1)
+            padx=24, pady=1, width=8, height=2, command=DisplayData).grid(row=1, column=0, padx=1)
 
         self.btnUpdate = Button(RightFramelo, font=('arial', 16, 'bold'), text="Update", bd=4, 
-            padx=24, pady=1, width=8, height=2).grid(row=2, column=0, padx=1)
+            padx=24, pady=1, width=8, height=2, command=update).grid(row=2, column=0, padx=1)
 
         self.btnDelete = Button(RightFramelo, font=('arial', 16, 'bold'), text="Delete", bd=4, 
-            padx=24, pady=1, width=8, height=2).grid(row=3, column=0, padx=1)
+            padx=24, pady=1, width=8, height=2, command=deleteDB).grid(row=3, column=0, padx=1)
 
         self.btnSearch = Button(RightFramelo, font=('arial', 16, 'bold'), text="Search", bd=4, 
-            padx=24, pady=1, width=8, height=2).grid(row=4, column=0, padx=1)
+            padx=24, pady=1, width=8, height=2, command=searchDB).grid(row=4, column=0, padx=1)
 
         self.btnReset = Button(RightFramelo, font=('arial', 16, 'bold'), text="Reset", bd=4, 
             padx=24, pady=1, width=8, height=2, command=Reset).grid(row=5, column=0, padx=1)
