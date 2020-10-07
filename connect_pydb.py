@@ -20,7 +20,7 @@ class ConnectorDB:
         self.root = root
         titlespace = ""
         self.root.title(102 * titlespace + "MySql Connection")
-        self.root.geometry("800x700+300+0")
+        self.root.geometry("810x630+300+0")
         self.root.resizable(width=False, height=False)
 
         MainFrame = Frame(self.root, bd=10, width=770, height=700, relief=RIDGE, bg='RoyalBlue3')
@@ -28,16 +28,19 @@ class ConnectorDB:
 
         TitleFrame = Frame(MainFrame, bd=7, width=770, height=100, relief=RIDGE)
         TitleFrame.grid(row=0, column=0)
+
         TopFrame3 = Frame(MainFrame, bd=5, width=770, height=500, relief=RIDGE)
         TopFrame3.grid(row=1, column=0)
 
         LeftFrame = Frame(TopFrame3, bd=5, width=600, height=400, padx=2, relief=RIDGE, bg='RoyalBlue3')
         LeftFrame.pack(side=LEFT)
+
         LeftFrame1 = Frame(LeftFrame, bd=5, width=600, height=180, padx=12, pady=9, relief=RIDGE)
         LeftFrame1.pack(side=TOP)
 
-        RightFrame1 = Frame(TopFrame3, bd=5, width=100, height=400, padx=2, relief=RIDGE, bg="RoyalBlue3")
+        RightFrame1 = Frame(TopFrame3, bd=5, width=100, height=420, padx=2, relief=RIDGE, bg="RoyalBlue3")
         RightFrame1.pack(side=RIGHT)
+
         RightFramelo = Frame(RightFrame1, bd=5, width=90, height=300, padx=2, pady=2, relief=RIDGE)
         RightFramelo.pack(side=TOP)
 
@@ -71,7 +74,7 @@ class ConnectorDB:
             if StudentID.get() == "" or Firstname.get() == "" or Surname.get() == "":
                 tkinter.messagebox.showerror("MySQL Connection", "Enter Correct Details.")
             else:
-                sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+                sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
                 cur.execute("Insert into pydatabase values (%s,%s,%s,%s,%s,%s)",(
 
@@ -91,7 +94,7 @@ class ConnectorDB:
             if StudentID.get() == "" or Firstname.get() == "" or Surname.get() == "":
                 tkinter.messagebox.showerror("MySQL Connection", "Enter Correct Details.")
             else:
-                sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+                sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
                 cur.execute("Select from pydatabase values")
                 result = cur.fetchall()
@@ -114,7 +117,7 @@ class ConnectorDB:
             Mobile.set(row[5])
 
         def update():
-            sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+            sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
             cur.execute("Update pydatabase values set firstname=%s, surname=%s, address=%s, Gender=%s, Mobile=%s where stdid=%s",(
             Firstname.get(),
@@ -130,7 +133,7 @@ class ConnectorDB:
             tkinter.messagebox.showinfo("Data Entry Form", "Record Updated Successfully !")
 
         def deleteDB():
-            sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+            sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
             cur.execute("Delete from pydatabase values where stdid=%s", StudentID.get())
             sqlCon.commit()
@@ -141,7 +144,7 @@ class ConnectorDB:
 
         def searchDB():
             try:
-                sqlCon = pymysql.connect(host='localhost', user='root', password='Koalatr33', database='pydatabase')
+                sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
                 cur.execute("Delete from pydatabase values where stdid=%s", StudentID.get())
                 row = cur.fetchone()
@@ -233,25 +236,25 @@ class ConnectorDB:
 
         #------------------
 
-        self.btnAddNew = Button(RightFramelo, font=('arial', 16, 'bold'), text="Add New", bd=4, 
+        self.btnAddNew = Button(RightFramelo, font=('arial', 14, 'bold'), text="Add New", bd=4, 
             padx=24, pady=1, width=8, height=2, command=addData).grid(row=0, column=0, padx=1)
 
-        self.btnDisplay = Button(RightFramelo, font=('arial', 16, 'bold'), text="Display", bd=4, 
+        self.btnDisplay = Button(RightFramelo, font=('arial', 14, 'bold'), text="Display", bd=4, 
             padx=24, pady=1, width=8, height=2, command=DisplayData).grid(row=1, column=0, padx=1)
 
-        self.btnUpdate = Button(RightFramelo, font=('arial', 16, 'bold'), text="Update", bd=4, 
+        self.btnUpdate = Button(RightFramelo, font=('arial', 14, 'bold'), text="Update", bd=4, 
             padx=24, pady=1, width=8, height=2, command=update).grid(row=2, column=0, padx=1)
 
-        self.btnDelete = Button(RightFramelo, font=('arial', 16, 'bold'), text="Delete", bd=4, 
+        self.btnDelete = Button(RightFramelo, font=('arial', 14, 'bold'), text="Delete", bd=4, 
             padx=24, pady=1, width=8, height=2, command=deleteDB).grid(row=3, column=0, padx=1)
 
-        self.btnSearch = Button(RightFramelo, font=('arial', 16, 'bold'), text="Search", bd=4, 
+        self.btnSearch = Button(RightFramelo, font=('arial', 14, 'bold'), text="Search", bd=4, 
             padx=24, pady=1, width=8, height=2, command=searchDB).grid(row=4, column=0, padx=1)
 
-        self.btnReset = Button(RightFramelo, font=('arial', 16, 'bold'), text="Reset", bd=4, 
+        self.btnReset = Button(RightFramelo, font=('arial', 14, 'bold'), text="Reset", bd=4, 
             padx=24, pady=1, width=8, height=2, command=Reset).grid(row=5, column=0, padx=1)
 
-        self.btnExit = Button(RightFramelo, font=('arial', 16, 'bold'), text="Exit", bd=4, 
+        self.btnExit = Button(RightFramelo, font=('arial', 14, 'bold'), text="Exit", bd=4, 
             padx=24, pady=1, width=8, height=2, command=iExit).grid(row=6, column=0, padx=1)
 
 if __name__=='__main__':
