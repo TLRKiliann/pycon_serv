@@ -74,7 +74,7 @@ class ConnectorDB:
             if StudentID.get() == "" or Firstname.get() == "" or Surname.get() == "":
                 tkinter.messagebox.showerror("MySQL Connection", "Enter Correct Details.")
             else:
-                sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
+                sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
                 cur.execute("Insert into pydatabase values (%s,%s,%s,%s,%s,%s)",(
 
@@ -94,7 +94,7 @@ class ConnectorDB:
             if StudentID.get() == "" or Firstname.get() == "" or Surname.get() == "":
                 tkinter.messagebox.showerror("MySQL Connection", "Enter Correct Details.")
             else:
-                sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
+                sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
                 cur.execute("Select from pydatabase values")
                 result = cur.fetchall()
@@ -117,9 +117,9 @@ class ConnectorDB:
             Mobile.set(row[5])
 
         def update():
-            sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
+            sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
-            cur.execute("Update pydatabase values set firstname=%s, surname=%s, address=%s, Gender=%s, Mobile=%s where stdid=%s",(
+            cur.execute("Update pydatabase values set firstname=%s, surname=%s, address=%s, gender=%s, mobile=%s where stdid=%s",(
             Firstname.get(),
             Surname.get(),
             Address.get(),
@@ -133,7 +133,7 @@ class ConnectorDB:
             tkinter.messagebox.showinfo("Data Entry Form", "Record Updated Successfully !")
 
         def deleteDB():
-            sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
+            sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
             cur.execute("Delete from pydatabase values where stdid=%s", StudentID.get())
             sqlCon.commit()
@@ -144,7 +144,7 @@ class ConnectorDB:
 
         def searchDB():
             try:
-                sqlCon = pymysql.connect(host='localhost', user='3x3c_t3ch', password='Ko@l@tr3379', database='pydatabase')
+                sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
                 cur.execute("Delete from pydatabase values where stdid=%s", StudentID.get())
                 row = cur.fetchone()
