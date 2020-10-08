@@ -15,7 +15,7 @@ Change the authentication method for root :
 
 Reload grant tables :
 
-mysql> FLUSH PRIVILEGES; 
+> mysql> FLUSH PRIVILEGES; 
 
 Recheck authentication method for MySQL users :
 
