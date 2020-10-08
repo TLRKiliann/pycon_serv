@@ -76,7 +76,7 @@ class ConnectorDB:
             else:
                 sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
-                cur.execute("Insert into pydatabase values (%s,%s,%s,%s,%s,%s)",(
+                cur.execute("insert into pydatabase values (%s,%s,%s,%s,%s,%s)",(
 
                 StudentID.get(),
                 Firstname.get(),
@@ -91,21 +91,18 @@ class ConnectorDB:
 
         # Interact with database
         def DisplayData():
-            if StudentID.get() == "" or Firstname.get() == "" or Surname.get() == "":
-                tkinter.messagebox.showerror("MySQL Connection", "Enter Correct Details.")
-            else:
-                sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
-                cur = sqlCon.cursor()
-                cur.execute("Select from pydatabase values")
-                result = cur.fetchall()
-                if len(result) != 0:
-                    self.student_records.delete(*self.student_records.get_children())
-                    for row in result:
-                        self.student_records.Insert('', END, values = row)
+            sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
+            cur = sqlCon.cursor()
+            cur.execute("select * from pydatabase")
+            result = cur.fetchall()
+            if len(result) != 0:
+                self.student_records.delete(*self.student_records.get_children())
+                for row in result:
+                    self.student_records.insert('',END,values =row)
                 sqlCon.commit()
-                sqlCon.close()
+            sqlCon.close()
 
-        def PyDataBaseInfo(event):
+        def PyDataBaseInfo(ev):
             viewInfo = self.student_records.focus()
             learnerData = self.student_records.item(viewInfo)
             row = learnerData['values']
@@ -119,13 +116,13 @@ class ConnectorDB:
         def update():
             sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
-            cur.execute("Update pydatabase values set firstname=%s, surname=%s, address=%s, gender=%s, mobile=%s where stdid=%s",(
+            cur.execute("update pydatabase set firstname=%s, surname=%s, address=%s, gender=%s, mobile=%s where stdid=%s",(
             Firstname.get(),
             Surname.get(),
             Address.get(),
             Gender.get(),
             Mobile.get(),
-            StudentID.get(),
+            StudentID.get()
             ))
             sqlCon.commit()
             DisplayData()
@@ -135,7 +132,7 @@ class ConnectorDB:
         def deleteDB():
             sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
-            cur.execute("Delete from pydatabase values where stdid=%s", StudentID.get())
+            cur.execute("delete from pydatabase where stdid=%s", StudentID.get())
             sqlCon.commit()
             DisplayData()
             sqlCon.close()
@@ -146,7 +143,7 @@ class ConnectorDB:
             try:
                 sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
-                cur.execute("Delete from pydatabase values where stdid=%s", StudentID.get())
+                cur.execute("select * from pydatabase where stdid=%s", StudentID.get())
                 row = cur.fetchone()
 
                 StudentID.set(row[0])
