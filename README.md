@@ -40,3 +40,10 @@ By connecting to MySQL Admin as root and running any administrative command :
 https://vitux.com/how-to-install-and-configure-mysql-in-ubuntu-18-04-lts/
 
 How to install MYSQL Workbench :
+
+> sudo apt update \
+> sudo apt install mysql-workbench
+
+To launch program use :
+
+> mysql-workbench
