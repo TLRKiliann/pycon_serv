@@ -46,7 +46,7 @@ To launch program use :
 
 > mysql-workbench
 
-If you need some help :
+If you need some help to use mysql, follow :
 
 https://www.quackit.com/mysql/tutorial/create_a_website_with_mysql.cfm
 
