@@ -1,5 +1,5 @@
 # pycon_serv
-connection with db (pymysql) 
+Connection to a database MySql with (pymysql) 
 
 How to install mysql ubuntu 18.04 :
 
