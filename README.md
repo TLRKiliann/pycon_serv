@@ -3,8 +3,8 @@ connection with db (pymysql)
 
 How to install mysql ubuntu 18.04 :
 
-> sudo apt-get update
-> sudo apt-get install mysql-server
+> sudo apt-get update \
+> sudo apt-get install mysql-server \
 > sudo mysql_secure_installation
 > sudo mysql
 Change the authentication method for root :
