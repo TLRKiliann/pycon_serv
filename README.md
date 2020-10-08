@@ -6,12 +6,12 @@ How to install mysql ubuntu 18.04 :
 > sudo apt-get update \
 > sudo apt-get install mysql-server \
 > sudo mysql_secure_installation \
-> sudo mysql \
+> sudo mysql
 
 Change the authentication method for root :
 
-mysql> SELECT user,authentication_string,plugin,host FROM mysql.user; \
-mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+> mysql> SELECT user,authentication_string,plugin,host FROM mysql.user; \
+> mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 
 Reload grant tables :
 
@@ -19,8 +19,8 @@ mysql> FLUSH PRIVILEGES;
 
 Recheck authentication method for MySQL users :
 
-mysql> SELECT user,authentication_string,plugin,host FROM mysql.user; \
-mysql> exit
+> mysql> SELECT user,authentication_string,plugin,host FROM mysql.user; \
+> mysql> exit
 
 Commands of mysql.service :
 
