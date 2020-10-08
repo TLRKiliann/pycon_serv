@@ -69,7 +69,7 @@ class ConnectorDB:
             Gender.set("")
             self.entMobile.delete(0, END)
         
-        # Interact with database
+        # Interact with database to add
         def addData():
             if StudentID.get() == "" or Firstname.get() == "" or Surname.get() == "":
                 tkinter.messagebox.showerror("MySQL Connection", "Enter Correct Details.")
@@ -89,7 +89,7 @@ class ConnectorDB:
                 sqlCon.close()
                 tkinter.messagebox.showinfo("MySQL connection", "Record Entered Successfully !")
 
-        # Interact with database
+        # Interact with database to display
         def DisplayData():
             sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
@@ -102,6 +102,7 @@ class ConnectorDB:
                 sqlCon.commit()
             sqlCon.close()
 
+        # Interact with database to diplay database in frame
         def PyDataBaseInfo(ev):
             viewInfo = self.student_records.focus()
             learnerData = self.student_records.item(viewInfo)
@@ -113,6 +114,7 @@ class ConnectorDB:
             Gender.set(row[4])
             Mobile.set(row[5])
 
+        # Interact with database to update
         def update():
             sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
@@ -129,6 +131,7 @@ class ConnectorDB:
             sqlCon.close()
             tkinter.messagebox.showinfo("Data Entry Form", "Record Updated Successfully !")
 
+        # Interact with database to delete
         def deleteDB():
             sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
@@ -139,6 +142,7 @@ class ConnectorDB:
             tkinter.messagebox.showinfo("Data Entry Form", "Record Successfully Deleted !")
             Reset()
 
+        # Interact with database to search
         def searchDB():
             try:
                 sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
