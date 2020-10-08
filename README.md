@@ -37,8 +37,6 @@ To create a user for more security :
 By connecting to MySQL Admin as root and running any administrative command :
 > sudo mysqladmin -p -u root version
 
-https://vitux.com/how-to-install-and-configure-mysql-in-ubuntu-18-04-lts/
-
 How to install MYSQL Workbench :
 
 > sudo apt update \
@@ -47,3 +45,11 @@ How to install MYSQL Workbench :
 To launch program use :
 
 > mysql-workbench
+
+If you need some help :
+
+https://www.quackit.com/mysql/tutorial/create_a_website_with_mysql.cfm
+
+Enjoy !
+
+Ko@l@tr33
