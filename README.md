@@ -32,7 +32,8 @@ To create a user for more security :
 
 > mysql -u root -p \
 > mysql> CREATE USER 'your_usrpseudo'@'localhost' IDENTIFIED BY 'your_new_strong_password'; \
-> mysql> GRANT ALL PRIVILEGES ON *.* TO 'your_usrpseudo'@'localhost' WITH GRANT OPTION;
+> mysql> GRANT ALL PRIVILEGES ON *.* TO 'your_usrpseudo'@'localhost' WITH GRANT OPTION; \
+> mysql> exit
 
 By connecting to MySQL Admin as root and running any administrative command :
 > sudo mysqladmin -p -u root version
