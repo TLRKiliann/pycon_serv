@@ -76,7 +76,7 @@ class ConnectorDB:
             else:
                 sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
-                cur.execute("insert into pydatabase values (%s,%s,%s,%s,%s,%s)",(
+                cur.execute("INSERT into pydatabase values (%s,%s,%s,%s,%s,%s)",(
 
                 StudentID.get(),
                 Firstname.get(),
@@ -93,7 +93,7 @@ class ConnectorDB:
         def DisplayData():
             sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
-            cur.execute("select * from pydatabase")
+            cur.execute("SELECT * from pydatabase")
             result = cur.fetchall()
             if len(result) != 0:
                 self.student_records.delete(*self.student_records.get_children())
@@ -118,7 +118,7 @@ class ConnectorDB:
         def update():
             sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
-            cur.execute("update pydatabase set firstname=%s, surname=%s, address=%s, gender=%s, mobile=%s where stdid=%s",(
+            cur.execute("UPDATE pydatabase set firstname=%s, surname=%s, address=%s, gender=%s, mobile=%s where stdid=%s",(
             Firstname.get(),
             Surname.get(),
             Address.get(),
@@ -135,7 +135,7 @@ class ConnectorDB:
         def deleteDB():
             sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
             cur = sqlCon.cursor()
-            cur.execute("delete from pydatabase where stdid=%s", StudentID.get())
+            cur.execute("DELETE from pydatabase where stdid=%s", StudentID.get())
             sqlCon.commit()
             DisplayData()
             sqlCon.close()
@@ -147,7 +147,7 @@ class ConnectorDB:
             try:
                 sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
-                cur.execute("select * from pydatabase where stdid=%s", StudentID.get())
+                cur.execute("SELECT * from pydatabase where stdid=%s", StudentID.get())
                 row = cur.fetchone()
 
                 StudentID.set(row[0])
