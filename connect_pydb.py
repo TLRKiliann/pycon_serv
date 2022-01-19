@@ -76,7 +76,7 @@ class ConnectorDB:
             else:
                 sqlCon = pymysql.connect(host='127.0.0.1', user='root', password='Ko@l@tr3379', database='pydatabase')
                 cur = sqlCon.cursor()
-                cur.execute("INSERT into pydatabase values (%s,%s,%s,%s,%s,%s)",(
+                cur.execute("INSERT into pydatabase values (%s, %s, %s, %s, %s, %s)",(
 
                 StudentID.get(),
                 Firstname.get(),
